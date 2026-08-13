@@ -1,0 +1,51 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Src\Academic\Docente\Infrastructure\Persistence\Repositories;
+
+use App\Models\Docente as DocenteModel;
+use Src\Academic\Docente\Domain\Contracts\DocenteRepositoryInterface;
+use Src\Academic\Docente\Domain\Entities\Docente;
+
+/**
+ * Concrete Eloquent adapter for the DocenteRepositoryInterface port.
+ *
+ * This is the only class in the module allowed to know about Eloquent.
+ * It translates between DocenteModel (persistence shape) and Docente
+ * (Domain shape) — a small anti-corruption layer.
+ *
+ * If App\Models\Docente does not exist yet, generate it separately with
+ * `php artisan make:model Docente -m`.
+ */
+final class EloquentDocenteRepository implements DocenteRepositoryInterface
+{
+    public function find(int $id): ?Docente
+    {
+        $model = DocenteModel::query()->find($id);
+
+        return $model ? $this->toDomain($model) : null;
+    }
+
+    public function save(Docente $docente): Docente
+    {
+        $model = $docente->id()
+            ? DocenteModel::query()->findOrFail($docente->id())
+            : new DocenteModel();
+
+        $model->name = $docente->name();
+        $model->save();
+
+        return Docente::reconstitute($model->id, $model->name);
+    }
+
+    public function delete(int $id): void
+    {
+        DocenteModel::query()->whereKey($id)->delete();
+    }
+
+    private function toDomain(DocenteModel $model): Docente
+    {
+        return Docente::reconstitute($model->id, $model->name);
+    }
+}
