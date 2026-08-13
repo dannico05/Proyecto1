@@ -8,11 +8,6 @@ use App\Models\Permission;
 
 class PermissionSeeder extends Seeder
 {
-    /**
-     * Actions available for every manageable module.
-     *
-     * @var array<int, string>
-     */
     private const ACTIONS = [
         'create',
         'view',
@@ -23,13 +18,15 @@ class PermissionSeeder extends Seeder
         'export_excel',
     ];
 
-    /**
-     * Modules that currently expose the actions above.
-     * Extend this list as new manageable modules are added.
-     *
-     * @var array<int, string>
-     */
-    private const MODULES = ['roles', 'permissions', 'docentes', 'cursos', 'carreras', 'atestados', 'catalogo_versiones'];
+    private const MODULES = [
+        'roles',
+        'permissions',
+        'docentes',
+        'cursos',
+        'carreras',
+        'atestados',
+        'catalogo_versiones',
+    ];
 
     public function run(): void
     {

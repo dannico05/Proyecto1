@@ -1,7 +1,7 @@
 <aside class="sidebar" x-persist="sidebar" :class="{ 'mobile-open': mobileOpen, 'collapsed': collapsed }" id="sidebar">
     <div class="logo-row" id="logoRow">
         <div class="logo-wrap" id="logoWrap">
-            <img src="{{ asset('images/logo-utn.AVIF') }}" alt="UTN" class="logo-img">
+            <img src="{{ asset('images/logo-utn.avif') }}" alt="UTN" class="logo-img">
         </div>
         <div class="logo-text" id="logoText" data-labels>
             <span class="logo-title">{{ __('UTN System') }}</span>
@@ -20,15 +20,11 @@
                     <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
                 </svg>
                 <span class="nav-text" data-labels>{{ __('Main Panel') }}</span>
-                <svg class="nav-chevron" data-labels width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.6;">
-                    <polyline points="9 6 15 12 9 18"></polyline>
-                </svg>
             </a>
         </div>
 
         <div class="nav-group">
             <span class="nav-label" data-labels>{{ __('SYSTEM ADMINISTRATION') }}</span>
-
 
             @can('viewAny', \Src\IdentityAccess\Role\Domain\Entities\Role::class)
             <a href="{{ route('identityaccess.role.index') }}" wire:navigate wire:current="active" class="nav-item">
@@ -37,9 +33,6 @@
                     <path d="M9 12l2 2 4-4"></path>
                 </svg>
                 <span class="nav-text" data-labels>{{ __('Roles') }}</span>
-                <svg class="nav-chevron" data-labels width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.6;">
-                    <polyline points="9 6 15 12 9 18"></polyline>
-                </svg>
             </a>
             @endcan
 
@@ -50,29 +43,12 @@
                     <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                 </svg>
                 <span class="nav-text" data-labels>{{ __('Permissions') }}</span>
-                <svg class="nav-chevron" data-labels width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.6;">
-                    <polyline points="9 6 15 12 9 18"></polyline>
-                </svg>
             </a>
             @endcan
         </div>
 
         <div class="nav-group">
             <span class="nav-label" data-labels>{{ __('ACADEMIC') }}</span>
-
-            <a href="#" @click.prevent="setSection('oferta')" class="nav-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 6.5c-1.6-1.3-3.8-2-6-2-.6 0-1 .4-1 1v11c0 .6.4 1 1 1 2.2 0 4.4.7 6 2 1.6-1.3 3.8-2 6-2 .6 0 1-.4 1-1v-11c0-.6-.4-1-1-1-2.2 0-4.4.7-6 2z"></path>
-                    <line x1="12" y1="6.5" x2="12" y2="19.5"></line>
-                </svg>
-                <span class="nav-text" data-labels>{{ __('Academic Offer') }}</span>
-                <svg class="nav-chevron" data-labels width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.6;">
-                    <polyline points="9 6 15 12 9 18"></polyline>
-                </svg>
-            </a>
-
-            
-            
 
             @can('viewAny', \Src\Academic\Docente\Domain\Entities\Docente::class)
             <a href="{{ route('academic.docente.index') }}" wire:navigate wire:current="active" class="nav-item">
@@ -86,100 +62,53 @@
             </a>
             @endcan
 
-           @can('viewAny', \Src\Academic\Curso\Domain\Entities\Curso::class)
-                <a href="{{ route('academic.curso.index') }}" wire:navigate wire:current="active" class="nav-item">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                        <path d="M8 7h8"></path>
-                        <path d="M8 11h6"></path>
-                        <path d="M8 15h4"></path>
-                    </svg>
-                    <span class="nav-text" data-labels>{{ __('Courses') }}</span>
-                </a>
+            @can('viewAny', \Src\Academic\Curso\Domain\Entities\Curso::class)
+            <a href="{{ route('academic.curso.index') }}" wire:navigate wire:current="active" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    <path d="M8 7h8"></path>
+                    <path d="M8 11h6"></path>
+                    <path d="M8 15h4"></path>
+                </svg>
+                <span class="nav-text" data-labels>{{ __('Courses') }}</span>
+            </a>
             @endcan
 
-           @can('viewAny', \Src\Academic\Carrera\Domain\Entities\Carrera::class)
-                <a href="{{ route('academic.carrera.index') }}" wire:navigate wire:current="active" class="nav-item">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                    </svg>
-                    <span class="nav-text" data-labels>{{ __('Careers') }}</span>
-                </a>
+            @can('viewAny', \Src\Academic\Carrera\Domain\Entities\Carrera::class)
+            <a href="{{ route('academic.carrera.index') }}" wire:navigate wire:current="active" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+                <span class="nav-text" data-labels>{{ __('Careers') }}</span>
+            </a>
             @endcan
 
             @can('viewAny', \Src\Academic\Atestado\Domain\Entities\Atestado::class)
-                <a href="{{ route('academic.atestado.index') }}" wire:navigate wire:current="active" class="nav-item">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                        <circle cx="12" cy="11" r="2"></circle>
-                        <path d="M10 15c.667-.667 1.333-1 2-1s1.333.333 2 1"></path>
-                    </svg>
-                    <span class="nav-text" data-labels>{{ __('Academic records') }}</span>
-                </a>
+            <a href="{{ route('academic.atestado.index') }}" wire:navigate wire:current="active" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    <circle cx="12" cy="11" r="2"></circle>
+                    <path d="M10 15c.667-.667 1.333-1 2-1s1.333.333 2 1"></path>
+                </svg>
+                <span class="nav-text" data-labels>{{ __('Academic records') }}</span>
+            </a>
             @endcan
 
             @can('viewAny', \Src\Academic\CatalogoVersion\Domain\Entities\CatalogoVersion::class)
-                <a href="{{ route('academic.catalogo-version.index') }}" wire:navigate wire:current="active" class="nav-item">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                        <polyline points="14 2 14 8 20 8"></polyline>
-                        <line x1="16" y1="13" x2="8" y2="13"></line>
-                        <line x1="16" y1="17" x2="8" y2="17"></line>
-                        <polyline points="10 9 9 9 8 9"></polyline>
-                    </svg>
-                    <span class="nav-text" data-labels>{{ __('Atinence catalog') }}</span>
-                </a>
-            @endcan
-            
-
-            <a href="#" @click.prevent="setSection('aulas')" class="nav-item">
+            <a href="{{ route('academic.catalogo-version.index') }}" wire:navigate wire:current="active" class="nav-item">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="4" y="2" width="16" height="20" rx="1"></rect>
-                    <line x1="9" y1="7" x2="9" y2="7.01"></line>
-                    <line x1="15" y1="7" x2="15" y2="7.01"></line>
-                    <line x1="9" y1="11" x2="9" y2="11.01"></line>
-                    <line x1="15" y1="11" x2="15" y2="11.01"></line>
-                    <line x1="9" y1="15" x2="9" y2="15.01"></line>
-                    <line x1="15" y1="15" x2="15" y2="15.01"></line>
-                    <line x1="10" y1="22" x2="10" y2="18.5"></line>
-                    <line x1="14" y1="22" x2="14" y2="18.5"></line>
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
                 </svg>
-                <span class="nav-text" data-labels>{{ __('Classrooms') }}</span>
-                <svg class="nav-chevron" data-labels width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.6;">
-                    <polyline points="9 6 15 12 9 18"></polyline>
-                </svg>
+                <span class="nav-text" data-labels>{{ __('Atinence catalog') }}</span>
             </a>
-
-            <div x-data="{ open: true }" x-on:livewire:navigated.window="open = false">
-                <div class="nav-item nav-parent" @click="open = !open; setSection('grupos', currentSub || 'activos')">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                        <polyline points="2 17 12 22 22 17"></polyline>
-                        <polyline points="2 12 12 17 22 12"></polyline>
-                    </svg>
-                    <span class="nav-text" data-labels>{{ __('Groups') }}</span>
-                    <svg class="nav-chevron chevron-toggle" :class="{ 'open': open }" data-labels width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
-                </div>
-                <div class="nav-children" :class="{ 'open': open }" data-labels>
-                    <a href="#" class="nav-child" @click.prevent="setSection('grupos', 'activos')">
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                            <polyline points="9 6 15 12 9 18"></polyline>
-                        </svg>
-                        <span>{{ __('Active Groups') }}</span>
-                    </a>
-                    <a href="#" class="nav-child" @click.prevent="setSection('grupos', 'historial')">
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                            <polyline points="9 6 15 12 9 18"></polyline>
-                        </svg>
-                        <span>{{ __('Group History') }}</span>
-                    </a>
-                </div>
-            </div>
+            @endcan
         </div>
 
         <div class="nav-group">
@@ -192,9 +121,6 @@
                     <circle cx="12" cy="16.7" r="0.9" fill="currentColor" stroke="none"></circle>
                 </svg>
                 <span class="nav-text" data-labels>{{ __('Risks') }}</span>
-                <svg class="nav-chevron" data-labels width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.6;">
-                    <polyline points="9 6 15 12 9 18"></polyline>
-                </svg>
             </a>
 
             <div x-data="{ open: false }" x-on:livewire:navigated.window="open = false">
